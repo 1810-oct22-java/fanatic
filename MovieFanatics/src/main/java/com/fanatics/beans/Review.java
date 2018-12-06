@@ -30,6 +30,13 @@ public class Review {
 		this.review_id = review_id;
 	}
 	
+	public Review(int review_id, int mser_id, int movie_id) {
+		super();
+		this.review_id = review_id;
+		this.user_id = user_id;
+		this.movie_id = movie_id;
+	}
+	
 	public int getReview_id() {
 		return review_id;
 	}
