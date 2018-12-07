@@ -1,5 +1,7 @@
 package com.fanatics.repository;
 
-public class ReviewRepository {
+import com.fanatics.beans.Review;
+
+public interface ReviewRepository extends JpaRepository <Review,Integer>{
 
 }
