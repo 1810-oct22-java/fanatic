@@ -24,20 +24,19 @@ public class Approval {
     private int id;
     
     @Column(nullable=false, name="REVIEW_ID")
-    private int review_id;
+    private int reviewId;
     @Column(nullable=false, name="THUMBS_UP")
     private int thumb;
     @Column(nullable=false, name="SOURCE_ID")
-    private int source_id;
+    private int sourceId;
 
     public Approval () {}
 
-	public Approval(int id, int review_id, int thumb, int source_id) {
+	public Approval(int reviewId, int thumb, int sourceId) {
 		super();
-		this.id = id;
-		this.review_id = review_id;
+		this.reviewId = reviewId;
 		this.thumb = thumb;
-		this.source_id = source_id;
+		this.sourceId = sourceId;
 	}
 
 	public int getId() {
@@ -48,12 +47,12 @@ public class Approval {
 		this.id = id;
 	}
 
-	public int getReview_id() {
-		return review_id;
+	public int getReviewId() {
+		return reviewId;
 	}
 
-	public void setReview_id(int review_id) {
-		this.review_id = review_id;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
 
 	public int getThumb() {
@@ -64,12 +63,12 @@ public class Approval {
 		this.thumb = thumb;
 	}
 
-	public int getSource_id() {
-		return source_id;
+	public int getSourceId() {
+		return sourceId;
 	}
 
-	public void setSource_id(int source_id) {
-		this.source_id = source_id;
+	public void setSourceId(int sourceId) {
+		this.sourceId = sourceId;
 	}
 
 	public static long getSerialversionuid() {
@@ -78,7 +77,7 @@ public class Approval {
 
 	@Override
 	public String toString() {
-		return "Approval [id=" + id + ", review_id=" + review_id + ", thumb=" + thumb + ", source_id=" + source_id
+		return "Approval [id=" + id + ", review_id=" + reviewId + ", thumb=" + thumb + ", source_id=" + sourceId
 				+ "]";
 	}
     

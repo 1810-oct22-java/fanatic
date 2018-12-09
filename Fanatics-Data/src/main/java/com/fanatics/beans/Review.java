@@ -24,58 +24,52 @@ public class Review {
     @Column(name="REVIEW_ID")
     @SequenceGenerator(name="REV_SEQ_GEN", sequenceName="REV_SEQ")
     @GeneratedValue(generator="REV_SEQ_GEN", strategy=GenerationType.SEQUENCE)
-    private int review_id;
+    private int reviewId;
     
     @Column(nullable=false, unique=true, name="USER_ID")
-    private int user_id;
+    private int userId;
     @Column(nullable=false, name="MOVIE_ID")
-    private int movie_id;
+    private int movieId;
     @Column(nullable=false, name="REVIEW")
     private String review;
     @Column(nullable=false, name="RATING")
     private int rating;
     @Column(nullable=false, name="REVIEW_DATE")
-    private Timestamp review_date;
+    private Timestamp reviewDate;
     @Column(nullable=false, name="REVIEW_EXPIRE_DATE")
-    private Timestamp expire_date;
+    private Timestamp expireDate;
 
     public Review() {
     }
 
-    public Review(int review_id) {
+    public Review(int userId, int movieId) {
         super();
-        this.review_id = review_id;
+        this.userId = userId;
+        this.movieId = movieId;
     }
 
-    public Review(int review_id, int user_id, int movie_id) {
-        super();
-        this.review_id = review_id;
-        this.user_id = user_id;
-        this.movie_id = movie_id;
+    public int getReviewId() {
+        return reviewId;
     }
 
-    public int getReview_id() {
-        return review_id;
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
     }
 
-    public void setReview_id(int review_id) {
-        this.review_id = review_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public void setUser_id(int userId) {
+        this.userId = userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public int getMovie_id() {
-        return movie_id;
-    }
-
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
     public String getReview() {
@@ -94,26 +88,26 @@ public class Review {
         this.rating = rating;
     }
 
-    public Timestamp getReview_date() {
-        return review_date;
+    public Timestamp getReviewDate() {
+        return reviewDate;
     }
 
-    public void setReview_date(Timestamp review_date) {
-        this.review_date = review_date;
+    public void setReview_date(Timestamp reviewDate) {
+        this.reviewDate = reviewDate;
     }
 
-    public Timestamp getExpire_date() {
-        return expire_date;
+    public Timestamp getExpireDate() {
+        return expireDate;
     }
 
-    public void setExpire_date(Timestamp expire_date) {
-        this.expire_date = expire_date;
+    public void setExpire_date(Timestamp expireDate) {
+        this.expireDate = expireDate;
     }
 
     @Override
     public String toString() {
-        return "Review [review_id=" + review_id + ", user_id=" + user_id + ", movie_id=" + movie_id + ", review="
-                + review + ", rating=" + rating +  ", review_date=" + review_date
-                + ", expire_date=" + expire_date + "]";
+        return "Review [review_id=" + reviewId + ", user_id=" + userId + ", movie_id=" + movieId + ", review="
+                + review + ", rating=" + rating +  ", review_date=" + reviewDate
+                + ", expire_date=" + expireDate + "]";
     }
 }
