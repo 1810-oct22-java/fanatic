@@ -3,30 +3,33 @@ package com.fanatics.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.fanatics.beans.User;
+import com.fanatics.models.User;
+import com.fanatics.repository.UserRepository;
 
 @Service("userService")
 public class UserService {
-
-	static ArrayList<User> Users = new ArrayList<User>();
-	static {
-		Users.add(new User("UserA", "passA", "FirstNameA", "LastNameA", 1, "biographyA"));
-		Users.add(new User("UserB", "passB", "FirstNameB", "LastNameB", 2, "biographyB"));
-	}
-
 	/**
 	 * 
 	 */
 	public UserService() {}
 
 	public List<User> getAll(){
-		return Users;
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		UserRepository repo = (UserRepository) context.getBean(UserRepository.class);
+		List<User> user = repo.findAll();
+		
+		return user;
 	}
 	
 	public User getById(int id) {
-		return Users.stream().filter(t -> t.getId()==id).findFirst()
-				.orElse(null);
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		UserRepository repo = (UserRepository) context.getBean(UserRepository.class);
+		User user = repo.findOne(id);
+		
+		return user;
 	}
 }
