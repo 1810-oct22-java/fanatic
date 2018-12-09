@@ -3,7 +3,7 @@ package com.fanatics.beans;
 import org.springframework.stereotype.Component;
 
 @Component
-public class User {
+public class UserBean {
     private String username;
     private String password;
     private String firstname;
@@ -12,9 +12,9 @@ public class User {
     private String bio;
     
     
-    public User() {}
+    public UserBean() {}
 
-    public User(String username, String password, String firstname, String lastname, int id, String bio) {
+    public UserBean(String username, String password, String firstname, String lastname, int id, String bio) {
         super();
         this.username = username;
         this.password = password;

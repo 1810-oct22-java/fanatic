@@ -6,16 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fanatics.beans.User;
+import com.fanatics.models.User;
 import com.fanatics.services.UserService;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private UserService service;
@@ -25,6 +26,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
+	@CrossOrigin
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<User> getAll() {
 		return service.getAll();
@@ -35,6 +37,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
