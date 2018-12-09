@@ -6,9 +6,15 @@ package com.fanatics.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.fanatics.beans.Review;
+import com.fanatics.models.Review;
+import com.fanatics.models.User;
+import com.fanatics.repository.ReviewRepository;
+import com.fanatics.repository.UserRepository;
 
 /**
  * @author PGerringer
@@ -16,12 +22,8 @@ import com.fanatics.beans.Review;
  */
 @Service("reviewService")
 public class ReviewService {
-	static ArrayList<Review> reviews = new ArrayList<Review>();
-	static {
-		reviews.add(new Review(1, 1, 3));
-		reviews.add(new Review(2, 1, 5));
-	}
-
+	@Autowired
+	private static ReviewRepository rRepo;
 	/**
 	 * 
 	 */
@@ -30,11 +32,18 @@ public class ReviewService {
 	}
 
 	public List<Review> getAll(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		ReviewRepository rRepo = (ReviewRepository) context.getBean(ReviewRepository.class);
+		List<Review> reviews = rRepo.findAll();
+		
 		return reviews;
 	}
 	
 	public Review getById(int id) {
-		return reviews.stream().filter(t -> t.getReview_id()==id).findFirst()
-				.orElse(null);
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		ReviewRepository repo = (ReviewRepository) context.getBean(ReviewRepository.class);
+		Review review = repo.findOne(id);
+		
+		return review;
 	}
 }

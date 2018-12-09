@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class Review {
+public class ReviewBean {
 	private int review_id;
 	private int user_id;
 	private int movie_id;
@@ -22,15 +22,28 @@ public class Review {
 	private Date review_date;
 	private Date expire_date;
 	
-	public Review() {
+	public ReviewBean() {
 	}
 	
-	public Review(int review_id) {
+	public ReviewBean(int review_id) {
 		super();
 		this.review_id = review_id;
 	}
 	
-	public Review(int review_id, int mser_id, int movie_id) {
+	public ReviewBean(int review_id, int user_id, int movie_id, String review, int rating, int approval_id,
+			Date review_date, Date expire_date) {
+		super();
+		this.review_id = review_id;
+		this.user_id = user_id;
+		this.movie_id = movie_id;
+		this.review = review;
+		this.rating = rating;
+		this.approval_id = approval_id;
+		this.review_date = review_date;
+		this.expire_date = expire_date;
+	}
+
+	public ReviewBean(int review_id, int mser_id, int movie_id) {
 		super();
 		this.review_id = review_id;
 		this.user_id = user_id;
