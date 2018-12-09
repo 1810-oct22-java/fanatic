@@ -52,10 +52,9 @@ public class User {
     
     public User() {}
     
-    public User(int id, String username, String password, String firstname, String lastname, String email, String bio,
+    public User(String username, String password, String firstname, String lastname, String email, String bio,
 			String isAdmin, Timestamp joinDate, int isVerified) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
