@@ -38,17 +38,10 @@ public class App {
 		ApprovalRepository aRepo = (ApprovalRepository) context.getBean(ApprovalRepository.class);
 		FavoriteRepository fRepo = (FavoriteRepository) context.getBean(FavoriteRepository.class);
 		
-		List<Review> reviews = rRepo.findAll();
-		List<User> users = uRepo.findAll();
-		User u1 = uRepo.findOne(1);
-		List<Approval> approvals = aRepo.findAll();
-		List<Favorite> favorites = fRepo.findAll();
+		List<Approval> approvals = aRepo.findByReviewId(2);
 		
-		System.out.println(reviews);
-		System.out.println(users);
-		System.out.println(u1);
-		System.out.println(approvals);
-		System.out.println(favorites);
+		Review r = rRepo.findUserReviewByMovie(1, 399360);
+		System.out.println(r);
 		
 
 	}
