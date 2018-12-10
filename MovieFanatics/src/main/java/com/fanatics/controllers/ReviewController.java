@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.util.Log;
+import com.fanatics.beans.ReviewBean;
 import com.fanatics.models.Review;
 import com.fanatics.services.ReviewService;
 
@@ -63,5 +64,20 @@ public class ReviewController {
 			//return ok status
 			return new ResponseEntity<Review>(review, HttpStatus.OK);
 		}
+	}
+	
+	/**
+	 * GET BY review_id method
+	 * @param id
+	 * @return
+	 */
+	@CrossOrigin
+	@RequestMapping(value="/view/{movie}/{source}",
+					method=RequestMethod.GET, 
+					produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<ReviewBean> getView(@PathVariable int movie, @PathVariable int source) {
+		log.debug("--------------ResponseEntity<Review> getView(" + source + ", " + movie + ");");
+		List<ReviewBean> reviews = service.getView(source, movie);
+		return reviews;
 	}
 }
