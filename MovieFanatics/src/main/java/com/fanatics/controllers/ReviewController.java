@@ -77,7 +77,7 @@ public class ReviewController {
 					produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<ReviewBean> getView(@PathVariable int movie, @PathVariable int source) {
 		log.debug("--------------ResponseEntity<Review> getView(" + source + ", " + movie + ");");
-		List<ReviewBean> review = service.getView(source, movie);
-		return review;
+		List<ReviewBean> reviews = service.getView(source, movie);
+		return reviews;
 	}
 }
