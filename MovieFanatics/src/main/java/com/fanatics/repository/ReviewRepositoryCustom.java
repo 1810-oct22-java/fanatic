@@ -14,15 +14,15 @@ public interface ReviewRepositoryCustom  extends JpaRepository<ReviewBean, Integ
 
 	@Query("select r.review_id, u.user_name, u.join_date, r.review_date, "
 			+ "		r.rating, r.review, a2.source_id as already_reviewed,  "
-			+ "		sum(a.thumbs_up) as UP, count(*)-sum(a.thumbs_up) as DOWN"
-			+ "from reviews r"
+			+ "		sum(a.thumbs_up) as UP, count(*)-sum(a.thumbs_up) as DOWN "
+			+ "from reviews r "
 			+ "join users u on r.user_id = u.user_id "
-			+ "left join approvals a on a.review_id = r.review_id"
-			+ "left join approvals a2 on a2.source_id = :id "
+			+ "left join approvals a on a.review_id = r.review_id "
+			+ "left join approvals a2 on a2.source_id = :source "
 			+ "		and a2.review_id = r.review_id "
-			+ "where r.review_expire_date > current_date "
+			+ "where r.review_expire_date > current_date and r.movie_id=:movie "
 			+ "group by r.review_id, u.user_name, u.join_date, r.review_date, "
 			+ "		r.rating, r.review, a2.source_id "
 			+ "order by r.review_date desc")
-	public List<ReviewBean> findAll(@Param("id") Integer id);
+	public List<ReviewBean> findAll(@Param("source") Integer source_id, @Param("movie") Integer movie_id);
 }

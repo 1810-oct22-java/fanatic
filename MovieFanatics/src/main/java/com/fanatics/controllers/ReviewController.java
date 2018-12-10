@@ -72,12 +72,12 @@ public class ReviewController {
 	 * @return
 	 */
 	@CrossOrigin
-	@RequestMapping(value="/view/{id}",
+	@RequestMapping(value="/view/{movie}/{source}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<ReviewBean> getView(@PathVariable int id) {
-		log.debug("--------------ResponseEntity<Review> getView");
-		List<ReviewBean> review = service.getView(id);
+	public List<ReviewBean> getView(@PathVariable int movie, @PathVariable int source) {
+		log.debug("--------------ResponseEntity<Review> getView(" + source + ", " + movie + ");");
+		List<ReviewBean> review = service.getView(source, movie);
 		return review;
 	}
 }

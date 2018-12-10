@@ -51,10 +51,10 @@ public class ReviewService {
 		return repo.findOne(id);
 	}
 	
-	public List<ReviewBean> getView(int id) {
+	public List<ReviewBean> getView(int id, int movie_id) {
 		log.debug("ReviewService.getView()");
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		custom = (ReviewRepositoryCustom) context.getBean(ReviewRepositoryCustom.class);
-		return custom.findAll(new Integer(id));
+		return custom.findAll(new Integer(id), movie_id);
 	}
 }
