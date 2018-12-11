@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,17 +21,17 @@ public class Favorite {
 	private int id;
 
 	@Column(nullable = false, name = "USER_ID")
-	private int user;
+	private int userId;
 	
 	@Column(nullable = false, name = "MOVIE_ID")
-	private int movieId;
+	private int movie_id;
 	
 	public Favorite() {}
 
-	public Favorite(int id, int user, int movie_id) {
+	public Favorite(int id, int userId, int movie_id) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.userId = userId;
 		this.movie_id = movie_id;
 	}
 
@@ -49,20 +48,28 @@ public class Favorite {
 	}
 
 	public void setMovieId(int movieId) {
-		this.movieId = movieId;
+		this.movie_id = movieId;
 	}
 
 	/**
-	 * @return the user
+	 * @return the user_id
 	 */
-	public int getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param user_id the user_id to set
 	 */
-	public void setUser(int user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
+
+	/**
+	 * @param movie_id the movie_id to set
+	 */
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
+	}
+
 }
