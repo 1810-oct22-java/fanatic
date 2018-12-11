@@ -25,7 +25,7 @@ public class Favorite {
 	private int user;
 	
 	@Column(nullable = false, name = "MOVIE_ID")
-	private int movie_id;
+	private int movieId;
 	
 	public Favorite() {}
 
@@ -48,8 +48,8 @@ public class Favorite {
 		return movie_id;
 	}
 
-	public void setMovie_id(int movie_id) {
-		this.movie_id = movie_id;
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
 	}
 
 	/**
