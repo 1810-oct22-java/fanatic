@@ -26,8 +26,8 @@ import org.springframework.stereotype.Component;
 public class ReviewBean {
 	private int review_id;
 	private String user_name;
-	private Date join_date;
-	private Date review_date;
+	private String join_date;
+	private String review_date;
 	private int rating;
 	private String review;
 	private int already_reviewed;
@@ -39,7 +39,7 @@ public class ReviewBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewBean(int review_id, String user_name, Date join_date, Date review_date, int rating, String review,
+	public ReviewBean(int review_id, String user_name, String join_date, String review_date, int rating, String review,
 			int already_reviewed, int up, int down) {
 		super();
 		this.review_id = review_id;
@@ -69,19 +69,19 @@ public class ReviewBean {
 		this.user_name = user_name;
 	}
 
-	public Date getJoin_date() {
+	public String getJoin_date() {
 		return join_date;
 	}
 
-	public void setJoin_date(Date join_date) {
+	public void setJoin_date(String join_date) {
 		this.join_date = join_date;
 	}
 
-	public Date getReview_date() {
+	public String getReview_date() {
 		return review_date;
 	}
 
-	public void setReview_date(Date review_date) {
+	public void setReview_date(String review_date) {
 		this.review_date = review_date;
 	}
 

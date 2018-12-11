@@ -16,27 +16,25 @@ import org.springframework.stereotype.Component;
 @Entity // registers class as entity in DB
 @Table(name = "FAVORITES")
 public class Favorite {
-
-	private static final long serialVersionUID = 1L;
-
 	@Id // necessary for Hibernate to identify objects
 	@Column(name = "FAVORITE_ID")
 	@SequenceGenerator(name = "FAV_SEQ_GEN", sequenceName = "FAV_SEQ")
 	@GeneratedValue(generator = "FAV_SEQ_GEN", strategy = GenerationType.SEQUENCE)
 	private int id;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	private int user_id;
+	@Column(nullable = false, name = "USER_ID")
+	private int userId;
 	
 	@Column(nullable = false, name = "MOVIE_ID")
-	private int movieId;
+	private int movie_id;
 	
 	public Favorite() {}
 
-	public Favorite(int user_id, int movieId) {
+	public Favorite(int id, int userId, int movie_id) {
 		super();
-		this.user_id = user_id;
-		this.movieId = movieId;
+		this.id = id;
+		this.userId = userId;
+		this.movie_id = movie_id;
 	}
 
 	public int getId() {
@@ -47,25 +45,33 @@ public class Favorite {
 		this.id = id;
 	}
 
-	public int getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-
-	public int getMovieId() {
-		return movieId;
+	public int getMovie_id() {
+		return movie_id;
 	}
 
 	public void setMovieId(int movieId) {
-		this.movieId = movieId;
+		this.movie_id = movieId;
 	}
 
-	@Override
-	public String toString() {
-		return "Favorite [id=" + id + ", user_id=" + user_id + ", movie_id=" + movieId + "]";
+	/**
+	 * @return the user_id
+	 */
+	public int getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param user_id the user_id to set
+	 */
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * @param movie_id the movie_id to set
+	 */
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
 	}
 
 }
