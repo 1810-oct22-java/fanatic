@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import com.fanatics.services.UserService;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
 	@Autowired
 	private UserService service;
@@ -51,6 +53,20 @@ public class UserController {
 		else {
 			//return ok status
 			return new ResponseEntity<User>(User, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value="/new",
+			method=RequestMethod.POST,
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> createNewUser(@RequestBody User user) {
+		user = service.newUser(user);
+		if(user == null) {
+			return new ResponseEntity<User>(HttpStatus.CONFLICT);
+		}
+		else {
+			return new ResponseEntity<User>(user, HttpStatus.CREATED);
 		}
 	}
 }
