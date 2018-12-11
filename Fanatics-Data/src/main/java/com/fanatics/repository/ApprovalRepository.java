@@ -18,4 +18,7 @@ public interface ApprovalRepository extends JpaRepository <Approval,Integer>{
 	@Query("SELECT a FROM Approval a WHERE a.sourceId=?1 AND a.reviewId=?2")
 	public Approval findUserApprovalByMovie(int sourceId, int reviewId);
 	
+	@Query("SELECT a FROM Approval a WHERE a.sourceId=?1 AND a.reviewId=?2")
+	public List<Approval> findUserApprovalsByUser(int sourceId, int reviewId);
+	
 }
