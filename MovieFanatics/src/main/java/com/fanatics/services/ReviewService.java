@@ -3,22 +3,17 @@
  */
 package com.fanatics.services;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.fanatics.beans.ReviewBean;
-import com.fanatics.controllers.ReviewController;
 import com.fanatics.models.Review;
 import com.fanatics.repository.ReviewRepository;
 import com.fanatics.repository.ReviewRepositoryCustom;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
