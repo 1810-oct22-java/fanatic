@@ -1,6 +1,5 @@
 package com.fanatics.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -31,5 +30,21 @@ public class UserService {
 		User user = repo.findOne(id);
 		
 		return user;
+	}
+	
+	public User getByUsername(String username) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		UserRepository uRepo = (UserRepository) context.getBean(UserRepository.class);
+		User u = uRepo.findByUsernameLikeIgnoreCase(username);
+		return u;
+	}
+	
+	public User validateUser(User u, String password) {
+		if (u.getPassword().equals(password)) {
+			return u;
+		}
+		else {
+			return null;
+		}
 	}
 }

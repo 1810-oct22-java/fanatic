@@ -2,9 +2,11 @@ package com.fanatics.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,16 +25,17 @@ public class Favorite {
 	@GeneratedValue(generator = "FAV_SEQ_GEN", strategy = GenerationType.SEQUENCE)
 	private int id;
 
-	@Column(nullable = false, name = "USER_ID")
-	private int userId;
+	@OneToOne(fetch = FetchType.LAZY)
+	private int user_id;
+	
 	@Column(nullable = false, name = "MOVIE_ID")
 	private int movieId;
 	
 	public Favorite() {}
 
-	public Favorite(int userId, int movieId) {
+	public Favorite(int user_id, int movieId) {
 		super();
-		this.userId = userId;
+		this.user_id = user_id;
 		this.movieId = movieId;
 	}
 
@@ -44,12 +47,12 @@ public class Favorite {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getUser_id() {
+		return user_id;
 	}
 
-	public void setUser_id(int userId) {
-		this.userId = userId;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public int getMovieId() {
@@ -62,7 +65,7 @@ public class Favorite {
 
 	@Override
 	public String toString() {
-		return "Favorite [id=" + id + ", user_id=" + userId + ", movie_id=" + movieId + "]";
+		return "Favorite [id=" + id + ", user_id=" + user_id + ", movie_id=" + movieId + "]";
 	}
 
 }
