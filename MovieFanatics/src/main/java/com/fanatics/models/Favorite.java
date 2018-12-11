@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -14,9 +15,6 @@ import org.springframework.stereotype.Component;
 @Entity // registers class as entity in DB
 @Table(name = "FAVORITES")
 public class Favorite {
-
-	private static final long serialVersionUID = 1L;
-
 	@Id // necessary for Hibernate to identify objects
 	@Column(name = "FAVORITE_ID")
 	@SequenceGenerator(name = "FAV_SEQ_GEN", sequenceName = "FAV_SEQ")
@@ -24,16 +22,18 @@ public class Favorite {
 	private int id;
 
 	@Column(nullable = false, name = "USER_ID")
-	private int userId;
+	private int user;
+	
 	@Column(nullable = false, name = "MOVIE_ID")
 	private int movieId;
 	
 	public Favorite() {}
 
-	public Favorite(int userId, int movieId) {
+	public Favorite(int id, int user, int movie_id) {
 		super();
-		this.userId = userId;
-		this.movieId = movieId;
+		this.id = id;
+		this.user = user;
+		this.movie_id = movie_id;
 	}
 
 	public int getId() {
@@ -44,25 +44,25 @@ public class Favorite {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUser_id(int userId) {
-		this.userId = userId;
-	}
-
-	public int getMovieId() {
-		return movieId;
+	public int getMovie_id() {
+		return movie_id;
 	}
 
 	public void setMovieId(int movieId) {
 		this.movieId = movieId;
 	}
 
-	@Override
-	public String toString() {
-		return "Favorite [id=" + id + ", user_id=" + userId + ", movie_id=" + movieId + "]";
+	/**
+	 * @return the user
+	 */
+	public int getUser() {
+		return user;
 	}
 
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(int user) {
+		this.user = user;
+	}
 }
