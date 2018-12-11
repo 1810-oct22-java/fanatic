@@ -81,7 +81,5 @@ public class Approval {
 		return "Approval [id=" + id + ", review_id=" + review_id + ", thumb=" + thumb + ", source_id=" + source_id
 				+ "]";
 	}
-    
-	
-	
+ 
 }
