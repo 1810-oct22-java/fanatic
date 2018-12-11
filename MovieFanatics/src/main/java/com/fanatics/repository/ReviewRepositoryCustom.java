@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.fanatics.beans.ReviewBean;
-import com.fanatics.models.Review;
 
 @Repository
 public class ReviewRepositoryCustom {

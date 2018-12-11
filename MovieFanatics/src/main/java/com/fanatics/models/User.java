@@ -1,12 +1,16 @@
 package com.fanatics.models;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -49,8 +53,21 @@ public class User {
 	
 	@Column(nullable=false,name="IS_VERIFIED")
 	private int isVerified;
-    
-    public User() {}
+	
+	@OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="USER_ID")
+    private List<Favorite> favorites;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="SOURCE_ID")
+    private List<Approval> approvals;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="USER_ID")
+    private List<Review> reviews;
+	
+	
+	public User() {}
     
     public User(int id, String username, String password, String firstname, String lastname, String email, String bio,
 			String isAdmin, Timestamp joinDate, int isVerified) {
@@ -147,7 +164,21 @@ public class User {
         this.bio = bio;
     }
     
-    @Override
+    /**
+	 * @return the favorites
+	 */
+	public List<Favorite> getFavorites() {
+		return favorites;
+	}
+
+	/**
+	 * @param favorites the favorites to set
+	 */
+	public void setFavorites(List<Favorite> favorites) {
+		this.favorites = favorites;
+	}
+
+	@Override
     public String toString() {
         return "User [username=" + username + ", password=" + password + ", firstname=" + firstname + ", lastname="
                 + lastname + ", id=" + id + ", bio=" + bio + "]\n";
