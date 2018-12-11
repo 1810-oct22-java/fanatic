@@ -17,7 +17,8 @@ public class ReviewRepositoryCustom {
 	public List<ReviewBean> findAll(Integer source_id, Integer movie_id) {
 		@SuppressWarnings("unchecked")
         List<ReviewBean> data = entityManager
-        	.createNativeQuery("select r.review_id, u.user_name, u.join_date, r.review_date, "
+        	.createNativeQuery("select r.review_id, u.user_name, TO_CHAR(u.join_date, 'MM/DD/YYYY') as join_date, "
+        				+ "     TO_CHAR(r.review_date, 'MM/DD/YYYY') as review_date, " 
         				+ "		r.rating, r.review, a2.source_id as already_reviewed,  "
         				+ "		sum(a.thumbs_up) as UP, count(*)-sum(a.thumbs_up) as DOWN "
         				+ "from reviews r "

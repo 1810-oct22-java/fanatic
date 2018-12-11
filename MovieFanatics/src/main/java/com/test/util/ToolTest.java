@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.fanatics.util.Tool;
 
 public class ToolTest {
+
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = null;
 	
@@ -28,4 +29,5 @@ public class ToolTest {
 		assertEquals(utilDate,Tool.convertDate(sqlDate));
 		assertEquals(sqlDate,Tool.convertDate(utilDate));
 	}
+
 }
