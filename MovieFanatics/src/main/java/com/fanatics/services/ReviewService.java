@@ -3,9 +3,9 @@
  */
 package com.fanatics.services;
 
+import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,7 +17,9 @@ import com.fanatics.controllers.ReviewController;
 import com.fanatics.models.Review;
 import com.fanatics.repository.ReviewRepository;
 import com.fanatics.repository.ReviewRepositoryCustom;
-import com.fanatics.util.Log;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * @author PGerringer
@@ -25,7 +27,6 @@ import com.fanatics.util.Log;
  */
 @Service("reviewService")
 public class ReviewService {
-	static Logger log = Log.getInstance(ReviewController.class);
 	
 	@Autowired
 	private static ReviewRepository repo;
@@ -52,7 +53,6 @@ public class ReviewService {
 	}
 	
 	public List<ReviewBean> getView(int id, int movie_id) {
-		log.debug("ReviewService.getView()");
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		custom = (ReviewRepositoryCustom) context.getBean(ReviewRepositoryCustom.class);
 		return custom.findAll(new Integer(id), movie_id);
