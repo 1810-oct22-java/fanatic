@@ -54,4 +54,11 @@ public class UserService {
 		User user = repo.save(u);
 		return user;
 	}
+	
+	public User newUser(User u) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		UserRepository repo = (UserRepository) context.getBean(UserRepository.class);
+		User user = repo.save(u);
+		return user;
+	}
 }

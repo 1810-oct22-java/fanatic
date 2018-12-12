@@ -10,5 +10,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public User findByUsernameLikeIgnoreCase(String username);
 
 	public User save(User user);
-
 }
