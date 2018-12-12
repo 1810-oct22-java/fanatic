@@ -26,7 +26,7 @@ public class Review {
     @GeneratedValue(generator="REV_SEQ_GEN", strategy=GenerationType.SEQUENCE)
     private int review_id;
     
-    @Column(nullable=false, unique=true, name="USER_ID")
+    @Column(nullable=false, name="USER_ID")
     private int user_id;
     @Column(nullable=false, name="MOVIE_ID")
     private int movie_id;

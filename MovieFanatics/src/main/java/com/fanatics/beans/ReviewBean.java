@@ -3,8 +3,6 @@
  */
 package com.fanatics.beans;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 /**
