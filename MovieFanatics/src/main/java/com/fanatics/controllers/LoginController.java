@@ -25,7 +25,7 @@ public class LoginController {
 	private static UserService uService;
 
 	@CrossOrigin
-	@RequestMapping(value = "/{username}/{password}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> findById(@PathVariable String username, @PathVariable String password) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		uService = (UserService) context.getBean(UserService.class);
