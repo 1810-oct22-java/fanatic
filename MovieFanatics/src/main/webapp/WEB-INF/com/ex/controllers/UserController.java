@@ -1,4 +1,4 @@
-package com.fanatics.controllers;
+package com.ex.controllers;
 
 import java.util.List;
 
@@ -13,60 +13,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fanatics.models.User;
-import com.fanatics.services.UserService;
+import com.ex.beans.User;
+import com.ex.service.UserService;
 
 @RestController
-@RequestMapping("/user")
-@CrossOrigin
+@RequestMapping("/users") //this annotation can be applied to both classes and methods
 public class UserController {
+	
 	@Autowired
 	private UserService service;
-
-	/**
-	 * returns results from a GET method
-	 * 
-	 * @return
-	 */
-	@CrossOrigin
-	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<User> getAll() {
+	
+	//GET ALL
+	@RequestMapping(method=RequestMethod.GET, 
+					produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<User> getAll(){
 		return service.getAll();
 	}
-
-	/**
-	 * GET BY User_id method
-	 * @param id
-	 * @return
-	 */
-	@CrossOrigin
+	
+	//GET BY ID	
 	@RequestMapping(value="/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> findById(@PathVariable int id) {
-		User User = service.getById(id);
-			
-		if(User == null) {
+		User u = service.getById(id);
+		
+		if(u == null) {
 			//return not found status
 			return new ResponseEntity<User>(HttpStatus.I_AM_A_TEAPOT);
 		}
 		else {
 			//return ok status
-			return new ResponseEntity<User>(User, HttpStatus.OK);
+			return new ResponseEntity<User>(u, HttpStatus.OK);
 		}
 	}
 	
-	@RequestMapping(value="/new",
-			method=RequestMethod.POST,
+	//CREATE
+	@RequestMapping(method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> createNewUser(@RequestBody User user) {
-		user = service.newUser(user);
+	public ResponseEntity<User> addUser(@RequestBody User u) {
+		u = service.addUser(u);
+		if(u == null) {
+			return new ResponseEntity<User>(HttpStatus.CONFLICT);
+		}
+		else {
+			return new ResponseEntity<User>(u, HttpStatus.CREATED);
+		}
+	}
+	
+	//UPDATE 
+	@RequestMapping(value="/{id}",
+			method=RequestMethod.PUT,
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User u){
+		User user = service.updateUser(id, u);
 		if(user == null) {
 			return new ResponseEntity<User>(HttpStatus.CONFLICT);
 		}
 		else {
-			return new ResponseEntity<User>(user, HttpStatus.CREATED);
+			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
+		
 	}
+
 }
