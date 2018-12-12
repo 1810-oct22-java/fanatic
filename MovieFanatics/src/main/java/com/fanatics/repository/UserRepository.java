@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.fanatics.models.User;
 
 @Repository
-public interface UserRepository extends JpaRepository <User,Integer>{
-	
-	User save(User user);
-	
+public interface UserRepository extends JpaRepository<User, Integer> {
+	public User findByUsernameLikeIgnoreCase(String username);
+
+	public User save(User user);
 }

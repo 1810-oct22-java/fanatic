@@ -52,4 +52,7 @@ public class ReviewService {
 		custom = (ReviewRepositoryCustom) context.getBean(ReviewRepositoryCustom.class);
 		return custom.findAll(new Integer(id), movie_id);
 	}
+
+
+	
 }
