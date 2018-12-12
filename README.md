@@ -1,6 +1,6 @@
 Project 2 Server side work for:
 
-Ted Airy<br>
+Ted Airy (he will never see this)<br>
 Davidson Bock<br>
 Phil Gerringer<br>
 Andrew Newman<br>
