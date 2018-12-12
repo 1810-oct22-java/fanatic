@@ -84,11 +84,9 @@ public class UserController {
 	public ResponseEntity<User> findById(@RequestBody User user) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		service = (UserService) context.getBean(UserService.class);
-log.trace(user);
 		User u = service.getByUsername(user.getUsername());
-log.trace(u);
 		u = service.validateUser(u, user.getPassword());
-log.trace(u);
+
 		if (u == null) {
 			// return not found status
 			return new ResponseEntity<User>(HttpStatus.I_AM_A_TEAPOT);

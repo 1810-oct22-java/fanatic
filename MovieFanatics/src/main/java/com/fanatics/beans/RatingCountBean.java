@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
  * where movie_id = 399360
  */
 @Component
-public class ReviewCountBean {
+public class RatingCountBean {
 	private int total = 0;
 	private int rating = 0;
 
-	public ReviewCountBean() {
+	public RatingCountBean() {
 		super();
 	}
 
-	public ReviewCountBean(int total, int rating) {
+	public RatingCountBean(int total, int rating) {
 		super();
 		this.total = total;
 		this.rating = rating;
