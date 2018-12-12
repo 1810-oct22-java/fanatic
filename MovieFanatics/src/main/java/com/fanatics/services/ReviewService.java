@@ -10,15 +10,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.fanatics.beans.RatingCountBean;
 import com.fanatics.beans.ReviewBean;
-import com.fanatics.beans.ReviewCountBean;
 import com.fanatics.models.Review;
-import com.fanatics.models.User;
-import com.fanatics.repository.MovieViewRepository;
 import com.fanatics.repository.ReviewRepository;
 import com.fanatics.repository.ReviewRepositoryCustom;
-import com.fanatics.repository.UserRepository;
-
 
 /**
  * @author PGerringer
@@ -33,8 +29,6 @@ public class ReviewService {
 	@Autowired
 	private static ReviewRepositoryCustom custom;
 	
-	@Autowired
-	private static MovieViewRepository movieView;
 	/**
 	 * 
 	 */
@@ -60,10 +54,10 @@ public class ReviewService {
 		return custom.findAll(new Integer(id), movie_id);
 	}
 	
-	public ReviewCountBean getReviewCount(int id) {
+	public RatingCountBean getRatingCount(int id) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		movieView = (MovieViewRepository) context.getBean(MovieViewRepository.class);
-		return(movieView.getReviewCount(id));
+		custom = (ReviewRepositoryCustom) context.getBean(ReviewRepositoryCustom.class);
+		return(custom.getRatingCount(id));
 	}
 	
 	public Review newReview(Review r) {
