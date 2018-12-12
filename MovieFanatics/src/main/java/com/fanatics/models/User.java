@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -163,20 +164,6 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
-    
-    /**
-	 * @return the favorites
-	 */
-	public List<Favorite> getFavorites() {
-		return favorites;
-	}
-
-	/**
-	 * @param favorites the favorites to set
-	 */
-	public void setFavorites(List<Favorite> favorites) {
-		this.favorites = favorites;
-	}
 
 	@Override
     public String toString() {
