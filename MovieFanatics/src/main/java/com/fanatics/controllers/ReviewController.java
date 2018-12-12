@@ -11,12 +11,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.beans.ReviewBean;
 import com.fanatics.models.Review;
+import com.fanatics.models.User;
 import com.fanatics.services.ReviewService;
 
 /**
@@ -72,5 +74,25 @@ public class ReviewController {
 					produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<ReviewBean> getView(@PathVariable int movie, @PathVariable int source) {
 		 return service.getView(source, movie);
+	}
+	
+	/**
+	 * Creates a new Review
+	 * @param review
+	 * @return
+	 */
+	@CrossOrigin
+	@RequestMapping(value="/new",
+			method=RequestMethod.POST,
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Review> createNewReview(@RequestBody Review review) {
+		review = service.newReview(review);
+		if(review == null) {
+			return new ResponseEntity<Review>(HttpStatus.CONFLICT);
+		}
+		else {
+			return new ResponseEntity<Review>(review, HttpStatus.CREATED);
+		}
 	}
 }
