@@ -2,6 +2,7 @@
 /.recommenders/
 target/
 Servers/
+.vscode/
 *.jar
 *.war
 *.ear
