@@ -39,18 +39,28 @@ public class ReviewRepositoryCustom {
 	}
 	
 	public RatingCountBean getRatingCount(Integer movie_id) {
+		int iTotal = 0;
+		int iRating = 0;
+		
 		BigDecimal total = (BigDecimal)entityManager
         	.createNativeQuery("select count(*) " + 
         						"from reviews where movie_id = :movie_id ")
         	.setParameter("movie_id",  movie_id)
         	.getSingleResult();
+		if(total != null) {
+			iTotal = total.intValue();
+		}
+		
 		
 		BigDecimal rating = (BigDecimal)entityManager
 	        	.createNativeQuery("select round(avg(rating),0) " + 
 	        						"from reviews where movie_id = :movie_id ")
 	        	.setParameter("movie_id",  movie_id)
 	        	.getSingleResult();
+		if(rating != null) {
+			iRating = rating.intValue();
+		}
 		
-		return new RatingCountBean(total.intValue(), rating.intValue());
+		return new RatingCountBean(iTotal, iRating);
 	}
 }
