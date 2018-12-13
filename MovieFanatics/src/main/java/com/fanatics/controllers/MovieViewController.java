@@ -19,6 +19,7 @@ import com.fanatics.services.ReviewService;
  *
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/view")
 public class MovieViewController {
 	
