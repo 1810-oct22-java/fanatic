@@ -1,6 +1,6 @@
 /.metadata/
 /.recommenders/
-target/
+target/*
 .vscode/
 *.jar
 *.war
