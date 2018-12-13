@@ -8,6 +8,6 @@ import com.fanatics.models.Review;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-	Review save(Review review);
+	public Review save(Review review);
 		
 }

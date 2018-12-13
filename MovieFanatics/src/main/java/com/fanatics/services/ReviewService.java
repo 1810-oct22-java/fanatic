@@ -3,6 +3,8 @@
  */
 package com.fanatics.services;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,11 @@ import org.springframework.stereotype.Service;
 import com.fanatics.beans.RatingCountBean;
 import com.fanatics.beans.ReviewBean;
 import com.fanatics.models.Review;
+import com.fanatics.models.User;
 import com.fanatics.repository.ReviewRepository;
 import com.fanatics.repository.ReviewRepositoryCustom;
+import com.fanatics.repository.UserRepository;
+import com.fanatics.util.Tool;
 
 /**
  * @author PGerringer
@@ -60,10 +65,15 @@ public class ReviewService {
 		return(custom.getRatingCount(id));
 	}
 	
-	public Review newReview(Review r) {
+	public Review newReview(Review review) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		ReviewRepository repo = (ReviewRepository) context.getBean(ReviewRepository.class);
-		Review review = repo.save(r);
+		
+		review.setExpire_date(Tool.getTime(Tool.tenYears()));
+		review.setReview_date(Tool.getTime(Tool.getCurrentDate()));
+
+		review = repo.save(review);
+		
 		return review;
 	}
 }
