@@ -38,4 +38,20 @@ public class UserService {
 		User user = repo.save(u);
 		return user;
 	}
+	
+	public User getByUsername(String username) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        UserRepository uRepo = (UserRepository) context.getBean(UserRepository.class);
+        User u = uRepo.findByUsernameLikeIgnoreCase(username);
+        return u;
+    }
+    
+    public User validateUser(User u, String password) {
+        if (u.getPassword().equals(password)) {
+            return u;
+        }
+        else {
+            return null;
+        }
+    }
 }
