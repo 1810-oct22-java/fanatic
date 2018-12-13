@@ -11,12 +11,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.models.Favorite;
+import com.fanatics.models.User;
 import com.fanatics.repository.FavoriteRepository;
+import com.fanatics.services.UserService;
 import com.fanatics.util.Log;
 
 @RestController
@@ -46,5 +49,23 @@ public class FavoriteController {
 			return new ResponseEntity<List<Favorite>>(favorites, HttpStatus.OK);
 		}
 	}
+	
+	@RequestMapping(method=RequestMethod.POST,
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Favorite> addFavorite(@RequestBody Favorite f) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		fRepo = (FavoriteRepository) context.getBean(FavoriteRepository.class);
+		fRepo.save(f);
+		
+		if(f == null) {
+			return new ResponseEntity<Favorite>(HttpStatus.CONFLICT);
+		}
+		else {
+			return new ResponseEntity<Favorite>(f, HttpStatus.CREATED);
+		}
+	}
+	
+
 	
 }
