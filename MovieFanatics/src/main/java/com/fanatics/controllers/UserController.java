@@ -63,11 +63,13 @@ public class UserController {
 		}
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/new",
 			method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> createNewUser(@RequestBody User user) {
+		System.out.println("this is printing from Controller " + user);
 		user = service.newUser(user);
 		if(user == null) {
 			return new ResponseEntity<User>(HttpStatus.CONFLICT);
