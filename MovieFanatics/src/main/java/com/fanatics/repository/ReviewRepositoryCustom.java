@@ -1,5 +1,6 @@
 package com.fanatics.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.fanatics.beans.ReviewBean;
+import com.fanatics.beans.RatingCountBean;
 
 @Repository
 public class ReviewRepositoryCustom {
@@ -34,5 +36,21 @@ public class ReviewRepositoryCustom {
         	.setParameter("movie",  movie_id)
         	.getResultList();
         return data;
+	}
+	
+	public RatingCountBean getRatingCount(Integer movie_id) {
+		BigDecimal total = (BigDecimal)entityManager
+        	.createNativeQuery("select count(*) " + 
+        						"from reviews where movie_id = :movie_id ")
+        	.setParameter("movie_id",  movie_id)
+        	.getSingleResult();
+		
+		BigDecimal rating = (BigDecimal)entityManager
+	        	.createNativeQuery("select round(avg(rating),0) " + 
+	        						"from reviews where movie_id = :movie_id ")
+	        	.setParameter("movie_id",  movie_id)
+	        	.getSingleResult();
+		
+		return new RatingCountBean(total.intValue(), rating.intValue());
 	}
 }
