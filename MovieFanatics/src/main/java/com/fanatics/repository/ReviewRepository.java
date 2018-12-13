@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.fanatics.models.Review;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Integer>{
+public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
+		
 }

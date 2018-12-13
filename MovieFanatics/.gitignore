@@ -1,7 +1,6 @@
 /.metadata/
 /.recommenders/
 target/
-Servers/
 .vscode/
 *.jar
 *.war

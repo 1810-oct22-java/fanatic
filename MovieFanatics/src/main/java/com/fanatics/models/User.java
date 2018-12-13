@@ -1,12 +1,17 @@
 package com.fanatics.models;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -49,10 +54,24 @@ public class User {
 	
 	@Column(nullable=false,name="IS_VERIFIED")
 	private int isVerified;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="USER_ID")
+    private List<Favorite> favorites;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="SOURCE_ID")
+    private List<Approval> approvals;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="USER_ID")
+    private List<Review> reviews;
+	
+	
+	public User() {}
     
-    public User() {}
- 
-    public User(String username, String password, String firstname, String lastname, String email, String bio) {
+    public User(int id, String username, String password, String firstname, String lastname, String email, String bio,
+			String isAdmin, Timestamp joinDate, int isVerified) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -150,8 +169,6 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
 				+ ", lastname=" + lastname + ", email=" + email + ", bio=" + bio + ", isAdmin=" + isAdmin
 				+ ", joinDate=" + joinDate + ", isVerified=" + isVerified + "]";
-	}
-    
-    
+}
 	
 }
