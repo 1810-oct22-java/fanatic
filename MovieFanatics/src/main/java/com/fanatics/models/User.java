@@ -42,7 +42,7 @@ public class User {
     private String bio;
 	
 	@Column(nullable=false,name="IS_ADMIN")
-	private String isAdmin;
+	private int isAdmin;
     
 	@Column(nullable=false,name="JOIN_DATE")
 	private Timestamp joinDate;
@@ -51,20 +51,18 @@ public class User {
 	private int isVerified;
     
     public User() {}
-    
-    public User(int id, String username, String password, String firstname, String lastname, String email, String bio,
-			String isAdmin, Timestamp joinDate, int isVerified) {
+ 
+    public User(String username, String password, String firstname, String lastname, String email, String bio) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.bio = bio;
-		this.isAdmin = isAdmin;
-		this.joinDate = joinDate;
-		this.isVerified = isVerified;
+		this.isAdmin = 0;
+		this.joinDate = new Timestamp(System.currentTimeMillis());
+		this.isVerified = 0;
 	}
 
 	public String getEmail() {
@@ -75,11 +73,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getIsAdmin() {
+	public int getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setIsAdmin(String isAdmin) {
+	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
@@ -146,11 +144,14 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", email=" + email + ", bio=" + bio + ", isAdmin=" + isAdmin
+				+ ", joinDate=" + joinDate + ", isVerified=" + isVerified + "]";
+	}
     
-    @Override
-    public String toString() {
-        return "User [username=" + username + ", password=" + password + ", firstname=" + firstname + ", lastname="
-                + lastname + ", id=" + id + ", bio=" + bio + "]\n";
-    }
+    
 	
 }
