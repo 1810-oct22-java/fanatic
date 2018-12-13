@@ -11,5 +11,6 @@ import com.fanatics.models.Favorite;
 public interface FavoriteRepository extends JpaRepository<Favorite,Integer>{
 
 	public List<Favorite> findByUserId(int id);
+
 	
 }

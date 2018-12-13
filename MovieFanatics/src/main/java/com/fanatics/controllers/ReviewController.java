@@ -25,6 +25,7 @@ import com.fanatics.services.ReviewService;
  * @author PGerringer
  *
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
