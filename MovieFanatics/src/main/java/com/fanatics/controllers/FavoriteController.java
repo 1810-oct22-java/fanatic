@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.models.Favorite;
-import com.fanatics.models.User;
 import com.fanatics.repository.FavoriteRepository;
-import com.fanatics.services.UserService;
 import com.fanatics.util.Log;
 
 @RestController
