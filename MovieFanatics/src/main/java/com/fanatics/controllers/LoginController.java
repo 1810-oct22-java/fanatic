@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.models.User;
-import com.fanatics.repository.UserRepository;
 import com.fanatics.services.UserService;
 import com.fanatics.util.Log;
 
@@ -38,7 +37,6 @@ public class LoginController {
 		User u = uService.getByUsername(username);
 		log.debug(u);
 		u = uService.validateUser(u, password);
-		
 		
 		if(u == null) {
 			//return not found status
