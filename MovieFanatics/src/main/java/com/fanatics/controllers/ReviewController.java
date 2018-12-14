@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.beans.ReviewBean;
 import com.fanatics.models.Review;
-import com.fanatics.models.User;
 import com.fanatics.services.ReviewService;
 
 /**
