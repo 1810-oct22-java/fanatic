@@ -72,4 +72,9 @@ public class Favorite {
 		this.movie_id = movie_id;
 	}
 
+	@Override
+	public String toString() {
+		return "Favorite [id=" + id + ", userId=" + userId + ", movie_id=" + movie_id + "]";
+	}
+
 }

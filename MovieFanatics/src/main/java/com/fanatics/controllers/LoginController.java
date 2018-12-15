@@ -2,8 +2,6 @@ package com.fanatics.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,18 +23,16 @@ public class LoginController {
 	static Logger log = Log.getInstance(ReviewController.class);
     
     @Autowired
-    private static UserService uService;
+    private UserService service;
 
     @CrossOrigin
     @RequestMapping(value="/{username}/{password}",
                     method=RequestMethod.GET, 
                     produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> findById(@PathVariable String username, @PathVariable String password) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		uService = (UserService) context.getBean(UserService.class);
-		User u = uService.getByUsername(username);
+		User u = service.getByUsername(username);
 		log.debug(u);
-		u = uService.validateUser(u, password);
+		u = service.validateUser(u, password);
 		
 		if(u == null) {
 			//return not found status
