@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.beans.ReviewBean;
+import com.fanatics.models.Approval;
 import com.fanatics.models.Review;
+import com.fanatics.repository.ApprovalRepository;
 import com.fanatics.repository.ReviewRepository;
 import com.fanatics.services.ReviewService;
 import com.fanatics.util.Log;
@@ -37,6 +39,8 @@ public class ReviewController {
 	
 	@Autowired
 	private ReviewRepository repo;
+	
+	@Autowired ApprovalRepository approvalRepo;
 	
 	static Logger log = Log.getInstance(ReviewController.class);
 	
@@ -107,6 +111,28 @@ public class ReviewController {
 		}
 		else {
 			return new ResponseEntity<Review>(review, HttpStatus.CREATED);
+		}
+	}
+	
+	/**
+	 * GET BY review_id method
+	 * @param id
+	 * @return
+	 */
+	@CrossOrigin
+	@RequestMapping(method=RequestMethod.POST, 
+					consumes=MediaType.APPLICATION_JSON_VALUE,
+					produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Approval> postThumbs(@RequestBody Approval approval) {
+		approval = approvalRepo.save(approval);
+			
+		if(approval == null) {
+			//return not found status
+			return new ResponseEntity<Approval>(HttpStatus.I_AM_A_TEAPOT);
+		}
+		else {
+			//return ok status
+			return new ResponseEntity<Approval>(approval, HttpStatus.OK);
 		}
 	}
 }
