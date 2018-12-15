@@ -39,7 +39,8 @@ public class ReviewController {
 	@Autowired
 	private ReviewRepository repo;
 	
-	@Autowired ApprovalRepository approvalRepo;
+	@Autowired 
+	ApprovalRepository approvalRepo;
 	
 	static Logger log = Log.getInstance(ReviewController.class);
 	

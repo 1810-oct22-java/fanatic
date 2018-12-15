@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.models.Favorite;
+import com.fanatics.models.User;
 import com.fanatics.repository.FavoriteRepository;
+import com.fanatics.repository.UserRepository;
 import com.fanatics.util.Log;
 
 @RestController
@@ -26,6 +28,9 @@ public class FavoriteController {
 	
 	@Autowired
 	private FavoriteRepository repo;
+	
+	@Autowired
+	private UserRepository uRepo;
 	
 	@CrossOrigin
 	@RequestMapping(value="/{id}",
@@ -57,6 +62,25 @@ public class FavoriteController {
 		}
 		else {
 			return new ResponseEntity<Favorite>(f, HttpStatus.CREATED);
+		}
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/username/{username}",
+					method=RequestMethod.GET, 
+					produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Favorite>> findByUsername(@PathVariable String username) {
+		User u = uRepo.findByUsernameLikeIgnoreCase(username);
+		List<Favorite> favorites = repo.findByUserId(u.getId());
+		log.debug(favorites);
+		
+		if(favorites == null) {
+			//return not found status
+			return new ResponseEntity<List<Favorite>>(HttpStatus.I_AM_A_TEAPOT);
+		}
+		else {
+			//return ok status
+			return new ResponseEntity<List<Favorite>>(favorites, HttpStatus.OK);
 		}
 	}
 	
