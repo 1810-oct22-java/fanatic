@@ -29,7 +29,7 @@ import com.fanatics.util.Tool;
  * @author Gerringer
  *
  */
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
@@ -48,7 +48,7 @@ public class ReviewController {
 	 * returns results from a GET method
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Review> getAll(){
 		return repo.findAll();
@@ -59,7 +59,7 @@ public class ReviewController {
 	 * @param id
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
@@ -81,7 +81,7 @@ public class ReviewController {
 	 * @param id
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/view/{movie}/{source}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
@@ -94,7 +94,7 @@ public class ReviewController {
 	 * @param review
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(
 			method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE,

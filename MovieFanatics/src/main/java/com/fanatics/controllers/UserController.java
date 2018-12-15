@@ -20,7 +20,7 @@ import com.fanatics.util.Log;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class UserController {
 	Logger log = Log.getInstance(UserController.class);
 	
@@ -32,7 +32,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<User> getAll() {
 		return service.getAll();
@@ -43,7 +43,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
@@ -60,7 +60,7 @@ public class UserController {
 		}
 	}
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/new",
 			method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
@@ -76,7 +76,7 @@ public class UserController {
 		}
 	}
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/login", method = RequestMethod.POST, 
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)

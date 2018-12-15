@@ -15,6 +15,7 @@ import com.fanatics.models.User;
 import com.fanatics.services.UserService;
 import com.fanatics.util.Log;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -25,7 +26,7 @@ public class LoginController {
     @Autowired
     private UserService service;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*")
     @RequestMapping(value="/{username}/{password}",
                     method=RequestMethod.GET, 
                     produces=MediaType.APPLICATION_JSON_VALUE)
