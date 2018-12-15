@@ -3,9 +3,12 @@ package com.fanatics.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.fanatics.models.Review;
+import com.fanatics.models.User;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
+	
+	public User findByUsername(String username);
 
 }
+

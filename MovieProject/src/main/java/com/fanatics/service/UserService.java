@@ -1,9 +1,11 @@
-package com.fanatics.services;
+package com.fanatics.service;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.fanatics.models.User;
@@ -11,13 +13,16 @@ import com.fanatics.repository.UserRepository;
 
 @Service("userService")
 public class UserService {
-	@Autowired
-	private UserRepository repo;
-	
 	/**
 	 * 
 	 */
+	@Autowired
+	UserRepository repo;
+	//static ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	//static UserRepository repo = (UserRepository) context.getBean(UserRepository.class);
+	
 	public UserService() {
+		
 	}
 
 	public List<User> getAll() {
@@ -44,7 +49,7 @@ public class UserService {
 	}
 	
 	public User getByUsername(String username) {
-        User u = repo.findByUsernameLikeIgnoreCase(username);
+        User u = repo.findByUsername(username);
         return u;
     }
     
@@ -58,3 +63,4 @@ public class UserService {
     }
 
 }
+

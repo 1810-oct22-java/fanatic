@@ -1,7 +1,6 @@
 package com.fanatics.controllers;
 
 import java.util.List;
-import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,17 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.models.User;
-import com.fanatics.services.UserService;
-import com.fanatics.util.Log;
+import com.fanatics.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
 public class UserController {
-	Logger log = Log.getInstance(UserController.class);
 	
 	@Autowired
-	private UserService service;
+	UserService service;
 
 	/**
 	 * returns results from a GET method

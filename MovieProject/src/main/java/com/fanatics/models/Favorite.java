@@ -24,15 +24,14 @@ public class Favorite {
 	private int userId;
 	
 	@Column(nullable = false, name = "MOVIE_ID")
-	private int movie_id;
+	private int movieId;
 	
 	public Favorite() {}
 
-	public Favorite(int id, int userId, int movie_id) {
+	public Favorite(int userId, int movieId) {
 		super();
-		this.id = id;
 		this.userId = userId;
-		this.movie_id = movie_id;
+		this.movieId = movieId;
 	}
 
 	public int getId() {
@@ -43,38 +42,25 @@ public class Favorite {
 		this.id = id;
 	}
 
-	public int getMovie_id() {
-		return movie_id;
-	}
-
-	public void setMovieId(int movieId) {
-		this.movie_id = movieId;
-	}
-
-	/**
-	 * @return the user_id
-	 */
 	public int getUserId() {
 		return userId;
 	}
 
-	/**
-	 * @param user_id the user_id to set
-	 */
-	public void setUserId(int userId) {
+	public void setUser_id(int userId) {
 		this.userId = userId;
 	}
 
-	/**
-	 * @param movie_id the movie_id to set
-	 */
-	public void setMovie_id(int movie_id) {
-		this.movie_id = movie_id;
+	public int getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
 	}
 
 	@Override
 	public String toString() {
-		return "Favorite [id=" + id + ", userId=" + userId + ", movie_id=" + movie_id + "]";
+		return "Favorite [id=" + id + ", userId=" + userId + ", movieId=" + movieId + "]";
 	}
 
 }
