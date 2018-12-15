@@ -18,8 +18,8 @@ import com.fanatics.services.ReviewService;
  * @author PGerringer
  *
  */
+@CrossOrigin(origins = "*")
 @RestController
-@CrossOrigin
 @RequestMapping("/view")
 public class MovieViewController {
 	
@@ -31,7 +31,7 @@ public class MovieViewController {
 	 * @param id
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/rating/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)

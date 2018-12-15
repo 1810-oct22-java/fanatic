@@ -22,7 +22,7 @@ import com.fanatics.util.Log;
  * @author Gerringer
  *
  */
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/approval")
 public class ApprovalController {
@@ -43,7 +43,7 @@ public class ApprovalController {
 	 * @param id
 	 * @return
 	 */
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method=RequestMethod.POST, 
 					consumes=MediaType.APPLICATION_JSON_VALUE,
 					produces=MediaType.APPLICATION_JSON_VALUE)
