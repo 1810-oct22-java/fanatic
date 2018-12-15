@@ -22,7 +22,7 @@ import com.fanatics.util.Log;
 @RequestMapping("/favorite")
 public class FavoriteController {
 
-	static Logger log = Log.getInstance(ReviewController.class);
+	static Logger log = Log.getInstance(FavoriteController.class);
 	
 	@Autowired
 	private FavoriteRepository repo;
