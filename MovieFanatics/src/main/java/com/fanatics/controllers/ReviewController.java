@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fanatics.beans.ReviewBean;
 import com.fanatics.models.Review;
+import com.fanatics.repository.ReviewRepository;
 import com.fanatics.services.ReviewService;
 import com.fanatics.util.Log;
+import com.fanatics.util.Tool;
 
 /**
  * @author PGerringer
@@ -33,6 +35,9 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 	
+	@Autowired
+	private ReviewRepository repo;
+	
 	static Logger log = Log.getInstance(ReviewController.class);
 	
 	/**
@@ -42,7 +47,7 @@ public class ReviewController {
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Review> getAll(){
-		return service.getAll();
+		return repo.findAll();
 	} 
 	
 	/**
@@ -91,7 +96,12 @@ public class ReviewController {
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Review> createNewReview(@RequestBody Review review) {
-		review = service.newReview(review);
+		review.setExpire_date(Tool.getTime(Tool.tenYears()));
+		review.setReview_date(Tool.getTime(Tool.getCurrentDate()));
+		
+		log.debug(review.toString());
+		review = repo.save(review); 
+//		review = service.newReview(review);
 		if(review == null) {
 			return new ResponseEntity<Review>(HttpStatus.CONFLICT);
 		}
