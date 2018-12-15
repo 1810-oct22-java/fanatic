@@ -51,7 +51,7 @@ public class UserService {
 	public User getByUsername(String username) {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         UserRepository uRepo = (UserRepository) context.getBean(UserRepository.class);
-        User u = uRepo.findByUsernameLikeIgnoreCase(username);
+        User u = uRepo.findByUsername(username);
         return u;
     }
     
