@@ -1,11 +1,9 @@
 package com.fanatics.services;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fanatics.models.User;
@@ -13,6 +11,9 @@ import com.fanatics.repository.UserRepository;
 
 @Service("userService")
 public class UserService {
+	@Autowired
+	private UserRepository repo;
+	
 	/**
 	 * 
 	 */
@@ -20,24 +21,18 @@ public class UserService {
 	}
 
 	public List<User> getAll() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		UserRepository repo = (UserRepository) context.getBean(UserRepository.class);
 		List<User> user = repo.findAll();
 
 		return user;
 	}
 
 	public User getById(int id) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		UserRepository repo = (UserRepository) context.getBean(UserRepository.class);
 		User user = repo.findOne(id);
 
 		return user;
 	}
 
 	public User newUser(User u) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		UserRepository repo = (UserRepository) context.getBean(UserRepository.class);
 		System.out.println(u);
 		u.setIsAdmin(0);
 		u.setIsVerified(0);
@@ -49,9 +44,7 @@ public class UserService {
 	}
 	
 	public User getByUsername(String username) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        UserRepository uRepo = (UserRepository) context.getBean(UserRepository.class);
-        User u = uRepo.findByUsernameLikeIgnoreCase(username);
+        User u = repo.findByUsernameLikeIgnoreCase(username);
         return u;
     }
     

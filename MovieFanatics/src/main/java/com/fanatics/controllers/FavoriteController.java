@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,18 +22,17 @@ import com.fanatics.util.Log;
 @RequestMapping("/favorite")
 public class FavoriteController {
 
-	@Autowired
 	static Logger log = Log.getInstance(ReviewController.class);
-	private static FavoriteRepository fRepo;
+	
+	@Autowired
+	private FavoriteRepository repo;
 	
 	@CrossOrigin
 	@RequestMapping(value="/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Favorite>> findById(@PathVariable int id) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		fRepo = (FavoriteRepository) context.getBean(FavoriteRepository.class);
-		List<Favorite> favorites = fRepo.findByUserId(id);
+		List<Favorite> favorites = repo.findByUserId(id);
 		log.debug(favorites);
 		
 		if(favorites == null) {
@@ -53,9 +50,7 @@ public class FavoriteController {
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Favorite> addFavorite(@RequestBody Favorite f) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		fRepo = (FavoriteRepository) context.getBean(FavoriteRepository.class);
-		fRepo.save(f);
+		f = repo.save(f);
 		
 		if(f == null) {
 			return new ResponseEntity<Favorite>(HttpStatus.CONFLICT);
