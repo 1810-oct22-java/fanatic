@@ -5,6 +5,7 @@ package com.fanatics.controllers;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fanatics.beans.ReviewBean;
 import com.fanatics.models.Review;
 import com.fanatics.services.ReviewService;
+import com.fanatics.util.Log;
 
 /**
  * @author PGerringer
@@ -30,7 +32,9 @@ import com.fanatics.services.ReviewService;
 public class ReviewController {
 	@Autowired
 	private ReviewService service;
-
+	
+	static Logger log = Log.getInstance(ReviewController.class);
+	
 	/**
 	 * returns results from a GET method
 	 * @return
