@@ -20,6 +20,7 @@ import com.fanatics.repository.FavoriteRepository;
 import com.fanatics.repository.UserRepository;
 import com.fanatics.util.Log;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/favorite")
 public class FavoriteController {
@@ -32,7 +33,7 @@ public class FavoriteController {
 	@Autowired
 	private UserRepository uRepo;
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
@@ -50,7 +51,7 @@ public class FavoriteController {
 		}
 	}
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
@@ -65,7 +66,7 @@ public class FavoriteController {
 		}
 	}
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/username/{username}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
@@ -82,8 +83,5 @@ public class FavoriteController {
 			//return ok status
 			return new ResponseEntity<List<Favorite>>(favorites, HttpStatus.OK);
 		}
-	}
-	
-
-	
+	}	
 }
