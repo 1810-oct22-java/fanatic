@@ -51,6 +51,11 @@ public class ReviewService {
 		return(custom.getRatingCount(id));
 	}
 	
+	/**
+	 * creates a new review
+	 * @param review
+	 * @return
+	 */
 	public Review newReview(Review review) {
 		review.setExpire_date(Tool.getTime(Tool.tenYears()));
 		review.setReview_date(Tool.getTime(Tool.getCurrentDate()));
