@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -19,6 +20,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity //registers class as entity in DB
+@NamedQuery(name = "Review.getAllById", query = "select r "
+											+ "from Review r "
+											+ "where r.user_id = :userid")
 @Table(name="REVIEWS")//allows further configuration of Table in DB
 public class Review {
     @Id //necessary for Hibernate to identify objects
