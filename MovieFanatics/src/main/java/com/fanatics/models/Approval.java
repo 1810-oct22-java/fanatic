@@ -2,9 +2,13 @@ package com.fanatics.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -12,6 +16,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity //registers class as entity in DB
+@NamedQuery(name = "Approval.findById", query = 
+		  "select a "
+		+ "from Approval a "
+		+ "JOIN a.review r "
+		+ "where r.user_id = :userid")
 @Table(name="APPROVALS")//allows further configuration of Table in DB
 public class Approval {
     
@@ -29,6 +38,11 @@ public class Approval {
     private int thumb;
     @Column(nullable=false, name="SOURCE_ID")
     private int source_id;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "REVIEW_ID", insertable = false, updatable = false)
+    private Review review;
+    
 
     public Approval () {}
 

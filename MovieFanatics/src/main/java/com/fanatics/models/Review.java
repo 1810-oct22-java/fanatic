@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,8 +40,8 @@ public class Review {
     @Column(nullable=false, name="REVIEW_EXPIRE_DATE")
     private Timestamp expire_date;
     
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="REVIEW_ID")
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name="REVIEW_ID",  insertable = false, updatable = false)
     private List<Approval> approvals;
 
     public Review() {
