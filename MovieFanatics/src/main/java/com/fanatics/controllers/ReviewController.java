@@ -60,6 +60,19 @@ public class ReviewController {
 	 * @return
 	 */
 	@CrossOrigin(origins = "*")
+	@RequestMapping(value="/all/{id}",
+					method=RequestMethod.GET, 
+					produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Review> getAllById(@PathVariable Integer id) {
+		 return repo.getAllById(id);
+	}
+	
+	/**
+	 * GET BY review_id method
+	 * @param id
+	 * @return
+	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/{id}",
 					method=RequestMethod.GET, 
 					produces=MediaType.APPLICATION_JSON_VALUE)
